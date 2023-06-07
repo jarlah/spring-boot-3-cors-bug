@@ -28,6 +28,7 @@ public class DemoConfig {
         return new InMemoryUserDetailsManager(user);
     }
 
+    // Spring Boot 3.1.0
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -42,6 +43,21 @@ public class DemoConfig {
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
+
+    // Spring Boot 2.7.x
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/files/**")
+//                .authenticated()
+//                .anyRequest()
+//                .permitAll()
+//                .and()
+//                .httpBasic();
+//        return http.build();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
