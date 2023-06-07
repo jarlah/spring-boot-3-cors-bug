@@ -20,11 +20,9 @@ class DemoControllerTests {
 
 	@Test
 	public void testPreflightRequest() throws Exception {
-		this.mockMvc.perform(
-						options("/api/demo")
-								.header("Access-Control-Request-Method", "GET")
-								.header("Origin", "http://cors:5000")
-				)
+		this.mockMvc.perform(options("/api/demo")
+						.header("Access-Control-Request-Method", "GET")
+						.header("Origin", "http://cors:5000"))
 				.andExpect(status().isOk())
 				.andExpect(header().string("Access-Control-Allow-Origin", "*"))
 				.andExpect(header().string("Access-Control-Max-Age", "1800"));
@@ -32,10 +30,8 @@ class DemoControllerTests {
 
 	@Test
 	public void testGetRequest() throws Exception {
-		this.mockMvc.perform(
-						get("/api/demo")
-								.header("Origin", "http://cors:5000")
-				)
+		this.mockMvc.perform(get("/api/demo")
+						.header("Origin", "http://cors:5000"))
 				.andExpect(status().isOk())
 				.andExpect(header().string("Access-Control-Allow-Origin", "*"))
 				.andExpect(header().string("Access-Control-Max-Age", "1800"));
